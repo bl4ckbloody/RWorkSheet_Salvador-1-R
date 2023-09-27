@@ -57,7 +57,7 @@ sum_of_numbers
 integers_1000 <- seq(1, 1000, by = 1)
 integers_1000
 
-
+#
 
 
 #A. How many data points from 8.1 to 8.4?
