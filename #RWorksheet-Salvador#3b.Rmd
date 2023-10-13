@@ -1,0 +1,162 @@
+---
+title: "Rworksheet_Salvador#3b"
+output: pdf_document
+date: "2023-10-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+#1.Create a data frame using the table below.
+#a. Write the codes.
+respo <- c(1:20)
+sex <- c(2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2)
+occu <- c(1,3,3,3,1,2,3,1,1,1,3,2,1,3,3,1,3,1,2,1)
+pers_at_home <- c(5,7,3,8,5,9,6,7,8,4,7,5,4,7,8,8,3,11,7,6)
+sibs <- c(6,4,4,1,2,1,5,3,1,2,3,2,5,5,2,1,2,5,3,2)
+t_of_house <- c(1,2,3,1,1,3,3,1,2,3,2,3,2,2,3,3,3,3,3,2)
+household_data <- data.frame(
+  Respondents = respo,
+  Sex = sex,
+  FatherOccupation = occu,
+  PersonAtHome = pers_at_home,
+  SiblingsAtSchool = sibs,
+  TypesofHouse = t_of_house
+)
+View(household_data)
+#1b. Describe the data. Get the structure or the summary of the data
+str(household_data)
+summary(household_data)
+#The data frame has 20 rows (observations) and 6 columns (variables).
+#The variables are:
+#Respondents - provides a unique numeric ID for each person surveyed.
+#Sex - it represents the gender of the respondent, That 1 is for Male and 2 is for Female.
+#Father's Occupation - represents the occupation of the fathers and the codes associated with each occupation, ! is for Farmers, 2 is for Driver and 3 is for Others.
+#Persons at Home - it represents how many people are currently at home in each household.
+#Siblings at School - which indicates how many siblings in the household are currently in school.
+#Types of House - it represents different types of houses.
+
+#1c.Is the mean number of siblings attending is 5?
+sibs_mean <- mean(household_data$SiblingsAtSchool)
+sibs_mean
+
+# The mean of siblings attending is not 5, however its 2.95
+#1d.Extract the 1st two rows and then all the columns using the subsetting functions. Write the codes and its output.
+ExfirstTwoRows <- household_data[1:2,]
+View(ExfirstTwoRows)
+#Output
+#Respondents Sex FatherOccupation PersonAtHome SiblingsAtSchool TypesofHouse
+#1           1   2                1            5                6            1
+#2           2   2                3            7                4            2
+
+#1e. Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its result.
+ExThirdandFifthRows <- household_data[c(3,5),c(2,4)]
+View(ExThirdandFifthRows)
+#Output
+# Sex PersonAtHome
+#3   1            3
+#5   2            5
+
+#1f. Select the variable types of houses then store the vector that results as types_houses. Write the codes.
+types_houses <- household_data$TypesofHouse
+types_houses
+
+#1g.Select only all Males respondent that their father occupation was farmer. Write the codes and its output.
+male_farmer <- household_data[household_data$Sex == 1 & household_data$FatherOccupation == 1,]
+male_farmer
+# 0 Obs.
+
+#1h.Select only all females respondent that have greater than or equal to 5 number of siblings attending school. Write the codes and its outputs.
+female_Respo <- household_data[household_data$SiblingsAtSchool >= 5,]
+View(female_Respo)
+# 5 obs
+# Respondents Sex FatherOccupation PersonAtHome SiblingsAtSchool TypesofHouse
+#1            1   2                1            5                6            1
+#7            7   2                3            6                5            3
+#13          13   2                1            4                5            2
+#14          14   2                3            7                5            2
+#18          18   2                1           11                5            3
+
+#2. Write a R program to create an empty data frame. Using the following codes:
+df = data.frame(Ints=integer(),
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE
+)
+print("Structure of the empty dataframe:")
+print(str(df))
+#df is a data frame that has been initialized with zero rows and five columns.
+#The data types of the columns are as follows:
+#ints are represented as integers.
+#doubles are stored as double-precision floating-point numbers.
+#characters contain character or text data.
+#logicals are used for storing logical (True/False) values.
+#factors are set as factors with zero levels, essentially making them empty.
+#This empty data frame serves as a template and can be filled with data as needed.
+
+#3.Create a .csv file of this. Save it as HouseholdData.csv
+new_respo <- c(1:10)
+new_sex <- c("Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male", "Female", "Male")
+new_occu <- c(1,2,3,3,1,2,2,3,1,3)
+new_persathome <- c(5,7,3,8,6,4,4,2,11,6)
+new_sibs <- c(2,3,0,5,2,3,1,2,6,2)
+newt_of_house <- c("Wood", "Congrete", "Congrete", "Wood", "Semi-congrete", "Semi-congrete", "Wood", "Semi-congrete", "Semi-congrete", "Congrete")
+householdData <- data.frame(
+  Respondents = new_respo,
+  Sex = new_sex,
+  FatherOccupation = new_occu,
+  PersonAtHome = new_persathome,
+  SiblingsAtSchool = new_sibs,
+  TypesofHouse = newt_of_house
+)
+write.csv(householdData, file = "HouseholdData.csv")
+#3a. Import the csv file into the R environment. Write the codes.
+imported <-  read.csv("HouseholdData.csv")
+imported
+#3b. Convert the Sex into factor using factor() function and change it into integer.[Legend:Male = 1 and Female = 2]. Write the R codes and its output.
+imported$Sex <- factor(imported$Sex, levels = c("Male", "Female"))
+imported$Sex <- as.integer(imported$Sex)
+imported$Sex
+#3c. Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Congrete = 2; Semi-Congrete = 3]. Write the R codes and its output.
+imported$TypesofHouse <- factor(imported$TypesofHouse, levels = c("Wood", "Congrete", "Semi-Congrete"))
+imported$TypesofHouse <- as.integer(imported$TypesofHouse)
+imported$TypesofHouse 
+#3d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What is the R code and its output?
+imported$FatherOccupation <- factor(imported$FatherOccupation, levels = c(1,2,3), labels = c("Farmer", "Driver", "Others"))
+imported$FatherOccupation 
+
+#3e
+female_driver <- imported[imported$Sex == 2 & imported$FatherOccupation == "Driver",]
+female_driver
+#3f
+greaterFive <- imported[imported$SiblingsAtSchool >= 5,]
+greaterFive
+#4
+# On July 14, there were more negative sentiments compared to the other sentiments.This could indicate that some event or topics that day received negative sentiments.
+# On July 15, all sentiments increased, with the negative sentiment as the highest.This could imply that something may have happened to trigger negative reactions on that day.
+# On July 17 and July 18, the negative sentiments stayed high and the neutral and positive sentiments remained relatively similar.
+# On July 20, all sentiments got to their lowest with but there were still more negative sentiments than the others. This could indicate that nothing happened on that day.
+# On July 21, experienced an increase in all sentiments, with the negative being the highest. This could also indicate that something occurred that day that could trigger the negative responses of the people =.
+# From this data, we could assume that public sentiment is responsive to external factors and it also varies as the days go by
