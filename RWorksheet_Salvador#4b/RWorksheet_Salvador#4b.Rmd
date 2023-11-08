@@ -1,0 +1,33 @@
+---
+title: "RWorksheet_Salvador#4b"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1 Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
+
+```{r}
+vectorA <- c(1,2,3,4,5)
+matA <- matrix(0, ncol=5, nrow=5)
+
+for(i in 1:5){
+  for(j in 1:5){
+    matA[i,j] <- abs(vectorA[i] - vectorA[j])
+  }
+}
+
+maxA
+
+```
+
+#2. 
+
+```
+for(i in 1:5) {
+  cat(paste0('"', "*", '"') %rep% i, "\n")
+}
+
+```
