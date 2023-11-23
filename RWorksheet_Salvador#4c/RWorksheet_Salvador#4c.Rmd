@@ -1,0 +1,40 @@
+---
+title: "RWorksheet_Salvador#4C"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1)a. Show your solutions on how to import a csv file into the environment.
+
+```{r}
+mpg <- read.csv(file = "mpg.csv", header = T, sep = ",")
+mpg
+```
+b. Which variables from mpg dataset are categorical?
+```{r}
+is_cont <- sapply(mpg, is.character)
+cont_vars <- names(mpg)[is_cont]
+cont_vars
+```     
+
+c.Which are continuous variables?
+```{r}
+is_cont <- sapply(mpg, is.numeric)
+cont_vars <- names(mpg)[is_cont]
+cont_vars
+```
+2. 
+a.
+```{r}
+library(dplyr)
+
+manufacturers_unique_models <- mpg %>%
+  group_by(manufacturer) %>%
+  summarize(unique_models = n_distinct(model))
+
+print(manufacturers_unique_models)
+```
+b.
