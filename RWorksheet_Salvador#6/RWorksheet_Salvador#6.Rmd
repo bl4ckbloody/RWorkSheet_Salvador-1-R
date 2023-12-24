@@ -31,17 +31,64 @@ scores <- data.frame(
   PostTest = c(61, 60, 56, 63, 56, 63, 59, 56, 62, 61)
 )
 
-#compute descriptive statistics in hmisc
-summary_stats_hmisc <- describe(scores)
-print(summary_stats_hmisc)
+#compute descriptive statistics using hmisc
+summary_hmisc <- describe(scores)
+summary_hmisc
 
 # install pastecs
 install.packages("pastecs")
 library(pastecs)
 
 # Compute descriptive statistics using pastecs
-summary_stats_pastecs <- stat.desc(scores)
-print(summary_stats_pastecs)
+summary_pastecs <- stat.desc(scores)
+summary_pastecs
 ```
+#2a. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
+```{r}
+# this is the sample data given.
+data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
 
+# this is were i convert fertilizer levels to an ordered factor.
+ferti_lvls <- ordered(data, levels = c(10, 20, 50))
+
+# this is were i display the factor
+ferti_lvls
+
+#This code shows the different levels of fertilizer used in a plant study and provides a summary of the data. You can change the order of the levels as needed.
+```
+#3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”, “n”, “i”, “l” ; n=none, l=light, i=intense 
+#a. What is the best way to represent this in R?
+
+```{r}
+# i create a factor variable for exercise levels
+exer_lvls <-  factor(exercise_levels, levels = c("n", "l", "i"), labels = c("none", "light", "intense"))
+
+
+# i display the factor variable
+exer_lvls
+
+#The most effective way to show the exercise levels of the 10 subjects is by using a factor variable in R. Each intensity level of exercise ("none," "light," "intense") can be portrayed as a different factor level.
+```
+#4a. Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
+#state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+#"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+#"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+#"vic", "vic", "act")
+#a. Apply the factor function and factor level. Describe the results.
+
+```{r}
+# this is the sample data given
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+  "vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+  "wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+  "vic", "vic", "act")
+
+# this is a factor variable
+state_factor <- factor(state)
+
+# display the factor levels
+levels(state_factor)
+
+#The result you see when using levels(state_factor) shows the specific categories or states that are part of the factor variable called state_factor.
+```
 
