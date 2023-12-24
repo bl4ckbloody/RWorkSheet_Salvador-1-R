@@ -1,0 +1,47 @@
+---
+title: "RWorksheet_Salvador#6"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.Create a data frame for the table below. Show your solution.
+```{r}
+
+scores <- data.frame(
+  Student = c(1:10),
+  PreTest = c(55, 54, 47, 57, 51, 61, 57, 54, 63, 58),
+  PostTest = c(61, 60, 56, 63, 56, 63, 59, 56, 62, 61)
+)  
+scores
+
+```
+#1a.Compute the descriptive statistics using different packages (Hmisc and pastecs). Write the codes and its result.
+```{r}
+# Install and load the Hmisc package
+install.packages("Hmisc")
+library(Hmisc)
+
+# I create a data frame named "scores".
+scores <- data.frame(
+  Student = c(1:10),
+  PreTest = c(55, 54, 47, 57, 51, 61, 57, 54, 63, 58),
+  PostTest = c(61, 60, 56, 63, 56, 63, 59, 56, 62, 61)
+)
+
+#compute descriptive statistics in hmisc
+summary_stats_hmisc <- describe(scores)
+print(summary_stats_hmisc)
+
+# install pastecs
+install.packages("pastecs")
+library(pastecs)
+
+# Compute descriptive statistics using pastecs
+summary_stats_pastecs <- stat.desc(scores)
+print(summary_stats_pastecs)
+```
+
+
