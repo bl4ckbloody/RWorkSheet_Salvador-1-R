@@ -91,4 +91,76 @@ levels(state_factor)
 
 #The result you see when using levels(state_factor) shows the specific categories or states that are part of the factor variable called state_factor.
 ```
+#5. From #4 - continuation:
+• Suppose we have the incomes of the same tax accountants in another vector (in suitably
+large units of money)
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+#5a. Calculate the sample mean income for each state we can now use the special function
+tapply():
+Example: giving a means vector with the components labelled by the levels
+incmeans <- tapply(incomes, statef, mean)
+Note: The function tapply() is used to apply a function, here mean(), to each group
+of components of the first argument, here incomes, defined by the levels of the second
+component, here state 2
+• 2
+that tapply() also works in this case when its second argument is not a factor,
+• e.g., ‘tapply(incomes, state)’, and this is true for quite a few other functions, since
+arguments are coerced to factors when necessary (using as.factor()).
+
+```{r}
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+  62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+  65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+
+# this line of my code calculate the sample mean income for each state using tapply.
+inc_means <- tapply(incomes, state_factor, mean)
+
+# Display the results
+inc_means
+```
+#5b
+
+#this is the output that shows the average income of each state.
+#act      nsw       nt      qld       sa      tas      vic       wa 
+#44.50000 57.33333 55.50000 53.60000 55.00000 60.50000 56.00000 52.25000
+
+#The tapply function helps us in determining the average income of tax accountants in each state. The output provides us with the average income for tax accountants in different states.
+
+#6. Calculate the standard errors of the state income means (refer again to number 3) stdError <- function(x) sqrt(var(x)/length(x))
+#Note: After this assignment, the standard errors are calculated by: incster <- tapply(incomes, statef, stdError)
+
+#6a.What is the standard error? Write the codes.
+
+```{r}
+stdError <- function(x) sqrt(var(x) / length(x))
+
+inc_std_errors <- tapply(incomes, state_factor, stdError)
+
+print(inc_std_errors)
+```
+#6b. Interpret the result.
+These numbers show how much the average incomes in each place might change. If the numbers are higher, we're not so sure about the average incomes. The "stdError function" figures out these numbers, helps us know how sure we can be about the average incomes for tax accountants in different places.
+
+#7. Use the titanic dataset.
+
+#a. subset the titatic dataset of those who survived and not survived. Show the codes and its result.
+
+```{r}
+install.packages("titanic")
+library(titanic)
+
+data("titanic_train")
+
+survived <- subset(titanic_train, Survived == 1)
+
+not_survived <- subset(titanic_train, Survived == 0)
+
+head(survived)
+head(not_survived)
+
+#These commands helps examine the data for passengers who either survived or did not survive the Titanic disaster. 
+```
 
