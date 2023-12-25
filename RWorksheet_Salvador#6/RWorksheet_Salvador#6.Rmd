@@ -163,4 +163,3 @@ head(not_survived)
 
 #These commands helps examine the data for passengers who either survived or did not survive the Titanic disaster. 
 ```
-
