@@ -7,7 +7,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1.Create a data frame for the table below. Show your solution.
+#1.Create a data frame for the table below. Show your solution.
 ```{r}
 
 scores <- data.frame(
@@ -59,16 +59,14 @@ ferti_lvls
 ```
 #3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”, “n”, “i”, “l” ; n=none, l=light, i=intense 
 #a. What is the best way to represent this in R?
-
 ```{r}
-# i create a factor variable for exercise levels
-exer_lvls <-  factor(exercise_levels, levels = c("n", "l", "i"), labels = c("none", "light", "intense"))
+exercise_levels <- c("n", "l", "i")
 
+exer_lvls <- factor(exercise_levels, levels = c("n", "l", "i"), labels = c("none", "light", "intense"))
 
-# i display the factor variable
-exer_lvls
+# Display the factor variable
+print(exer_lvls)
 
-#The most effective way to show the exercise levels of the 10 subjects is by using a factor variable in R. Each intensity level of exercise ("none," "light," "intense") can be portrayed as a different factor level.
 ```
 #4a. Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
 #state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
@@ -93,22 +91,22 @@ levels(state_factor)
 #The result you see when using levels(state_factor) shows the specific categories or states that are part of the factor variable called state_factor.
 ```
 #5. From #4 - continuation:
-• Suppose we have the incomes of the same tax accountants in another vector (in suitably
-large units of money)
-incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
-62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
-65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+#• Suppose we have the incomes of the same tax accountants in another vector (in suitably
+#large units of money)
+#incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+#62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+#65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
 #5a. Calculate the sample mean income for each state we can now use the special function
-tapply():
-Example: giving a means vector with the components labelled by the levels
-incmeans <- tapply(incomes, statef, mean)
-Note: The function tapply() is used to apply a function, here mean(), to each group
-of components of the first argument, here incomes, defined by the levels of the second
-component, here state 2
-• 2
-that tapply() also works in this case when its second argument is not a factor,
-• e.g., ‘tapply(incomes, state)’, and this is true for quite a few other functions, since
-arguments are coerced to factors when necessary (using as.factor()).
+#tapply():
+#Example: giving a means vector with the components labelled by the levels
+#incmeans <- tapply(incomes, statef, mean)
+#Note: The function tapply() is used to apply a function, here mean(), to each group
+#of components of the first argument, here incomes, defined by the levels of the second
+#component, here state 2
+#• 2
+#that tapply() also works in this case when its second argument is not a factor,
+#• e.g., ‘tapply(incomes, state)’, and this is true for quite a few other functions, since
+#arguments are coerced to factors when necessary (using as.factor()).
 
 ```{r}
 incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
@@ -143,7 +141,7 @@ inc_std_errors <- tapply(incomes, state_factor, stdError)
 print(inc_std_errors)
 ```
 #6b. Interpret the result.
-These numbers show how much the average incomes in each place might change. If the numbers are higher, we're not so sure about the average incomes. The "stdError function" figures out these numbers, helps us know how sure we can be about the average incomes for tax accountants in different places.
+#These numbers show how much the average incomes in each place might change. If the numbers are higher, we're not so sure about the average incomes. The "stdError function" figures out these numbers, helps us know how sure we can be about the average incomes for tax accountants in different places.
 
 #7. Use the titanic dataset.
 
