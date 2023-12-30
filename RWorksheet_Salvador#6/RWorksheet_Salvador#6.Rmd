@@ -43,6 +43,7 @@ library(pastecs)
 summary_pastecs <- stat.desc(scores)
 summary_pastecs
 ```
+
 #2a. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
 ```{r}
 # this is the sample data given.
@@ -163,3 +164,81 @@ head(not_survived)
 
 #These commands helps examine the data for passengers who either survived or did not survive the Titanic disaster. 
 ```
+#8. The data sets are about the breast cancer Wisconsin. The samples arrive periodically as Dr. Wolberg reports his clinical cases. The database therefore reflects this
+#chronologihttps://drive.google.com/file/d/16MFLoehCgx2MJuNSAuB2CsBy6eDIIr-
+#u/view?usp=drive_link)
+
+#8a. the data set is about the data of breast cancer.
+
+```{r}
+breastcancer_data <- read.csv("breastcancer_wisconsin.csv")
+
+str(breastcancer_data)
+head(breastcancer_data)
+summary(breastcancer_data)
+
+```
+#8d1.d.1 Standard error of the mean for clump thickness.
+```{r}
+install.packages("psych")
+library(psych)
+
+clump_thickness <- breastcancer_data$ClumpThickness
+marginal_adhesion <- breastcancer_data$MarginalAdhesion
+bare_nuclei <- breastcancer_data$BareNuclei
+bland_chromatin <- breastcancer_data$BlandChromatin
+uniformity_cell_shape <- breastcancer_data$UniformityCellShape
+
+#d.1 Standard error of the mean for clump thickness.
+
+SE_clumpthickness <- sd(clump_thickness) / sqrt(length(clump_thickness))
+SE_clumpthickness
+
+#d.2 Coefficient of variability for Marginal Adhesion.
+
+CV_marginaladhesion <- sd(marginal_adhesion) / mean(marginal_adhesion)
+CV_marginaladhesion
+
+#d.3 Number of null values of Bare Nuclei.
+
+nullval_barenuclei <- sum(is.na(bare_nuclei))
+nullval_barenuclei
+
+#d.4 Mean and standard deviation for Bland Chromatin
+mean_blandchromatin <- mean(breastcancer_data$bland_chromatin)
+sd_blandchromatin <- sd(breastcancer_data$bland_chromatin)
+mean_blandchromatin
+sd_blandchromatin
+
+#d.5 Confidence interval of the mean for Uniformity of Cell Shape
+ci_uniformitycellshape <- tryCatch(
+  t.test(breastcancer_data$`uniformity_cell_shape`)$conf.int,
+  error = function(e) NULL
+)
+ci_uniformitycellshape
+```
+#9. Export the data abalone to the Microsoft excel file. Copy the codes. install.packages("AppliedPredictiveModeling")
+#library("AppliedPredictiveModeling")
+#view(abalone)
+#head(abalone)
+#summary(abalone)
+
+```{r, error=TRUE}
+install.packages("AppliedPredictiveModeling")
+library(AppliedPredictiveModeling)
+
+data("abalone")
+
+install.packages("openxlsx")
+
+
+library(openxlsx)
+
+write.xlsx(abalone, file = "abalone.xlsx")
+
+View(abalone)
+head(abalone)
+summary(abalone)
+
+```
+
